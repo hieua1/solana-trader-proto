@@ -1,12 +1,12 @@
 use std::fs;
 use std::path::Path;
-use tonic_build::Builder;
+use tonic_prost_build::Builder;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let out_dir = std::env::var("OUT_DIR").unwrap();
     println!("cargo:warning=Proto output dir: {}", out_dir);
 
-    let builder = tonic_build::configure()
+    let builder = tonic_prost_build::configure()
         .protoc_arg("--experimental_allow_proto3_optional")
         .build_server(false)
         .compile_well_known_types(true)
